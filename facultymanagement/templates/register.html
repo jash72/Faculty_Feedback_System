@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Faculty Registration</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Faculty Registration</h3>
+            <hr>
+			{% if messages %}
+			<div class="alert alert-primary" role="alert">
+				{% for message in messages %}
+				{{ message }}
+				{% endfor %}
+			</div>
+			{% endif %}
+
+            <div class="form-group">
+                <label for="facultyid">Faculty ID</label>
+                <input type="text" class="form-control" name="Id" id="facultyid"aria-details="id" placeholder="Enter the Faculty ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="facultyname">Faculty Name</label>
+                <input type="text" class="form-control" name="Name"  id="facultyname" placeholder="Enter the Faculty Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="facultygender">Gender</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" id="inlineRadio1" value="Male">
+                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" id="inlineRadio2" value="Female">
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" id="inlineRadio3" value="Others">
+                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="facultyemail">Email ID</label>
+                <input type="email" class="form-control" name="Email_ID"  id="facultyemail" placeholder="Enter the Faculty Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="facultyphoneno">Phone No</label>
+                <input type="tel" class="form-control" name="Phone_No"  id="facultyphoneno" placeholder="Enter the Faculty Name" pattern="[0-9]{10}"required>
+            </div>
+
+            <div class="form-group">
+                <label for="facultyqualification">Qualification</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="B.Tech" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        B.Tech
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="B.E" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        B.E
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="M.Tech" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        M.Tech
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="M.E" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        M.E
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="M.Sc" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        M.Sc
+                    </label>
+                </div>                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="P.hd" name = 'Qualification' id="facultyqualification">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        P.hd
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="facultydepartment">Department</label>
+                <div>
+                    <select class="form-control" id="facultydepartment" name="Department">
+                        <option selected disabled>Select Department</option>
+                        <option>Artificial Intelligence and Data Science</option>
+                        <option>Artificial Intelligence and Machine Learning</option>
+                        <option>Aeronautical Engineering</option>
+                        <option>Agricultural Engineering</option>
+                        <option>Automobile Engineering</option>
+                        <option>Biomedical Engineering</option>
+                        <option>Biotechnology</option>
+                        <option>Civil Engineering</option>
+                        <option>Computer Science and Business Systems</option>
+                        <option>Computer Science and Engineering</option>
+                        <option>Computer Technology</option>
+                        <option>Electrical and Electronics Engineering</option>
+                        <option>Electronics and Communication Engineering</option>
+                        <option>Electronics and Instrumentation Engineering</option>
+                        <option>Fashion Technology</option>
+                        <option>Food Technology</option>
+                        <option>Information Technology</option>
+                        <option>Information Science and Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Mechatronics Engineering</option>
+                        <option>Textile Technology</option>
+                        <option>Computer Science and Design</option>
+                        <option>Artificial Intelligence and Data Science</option>
+                        <option>Artificial Intelligence and Machine Learning</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="facultydesignation">Designation</label>
+                <div>
+                    <select class="form-control" id="facultydesignation" name="Designation">
+                        <option selected disabled>Designation</option>
+                        <option> Head </option>
+                        <option> Associate Professor </option>
+                        <option> Assistant Professor Level-3</option>
+                        <option> Assistant Professor Level-2 </option>
+                        <option> Assistant Professor Level-1 </option>
+                        <option> Professor Intern</option>
+                    </select>
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+
+        </form>
+    </div>
+<!--
+    <h2 style="text-align:center">Faculty Registration </h2>
+    <form method="POST">
+        {% csrf_token %}
+        <table style="width:50%" align="center">
+            <tr>
+                <td>Faculty Id</td>
+                <td><input type="text" placeholder="Enter Faculty Id" name="Id"></td>
+            </tr>
+            <tr>
+                <td>Faculty Name</td>
+                <td><input type="text" placeholder="Enter Faculty Name" name="Name"> </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="Gender" value="Male"> Male
+                    <input type="radio" name="Gender" value="Female"> Female
+                    <input type="radio" name="Gender" value="Other"> Other
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" placeholder="Enter Faculty Email" name="Email_ID"> </td>
+            </tr>
+            <tr>
+                <td>Phone No</td>
+                <td><input type="text" placeholder="Enter Faculty Phone No" name="Phone_No"> </td>
+            </tr>
+            <tr>
+                <td>Qualification</td>
+                <td><input type="text" placeholder="Enter Qualification(separate with ',')" name="Qualification"> </td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><select name="Department">
+                        <option selected disabled=true>Select Department</option>
+                        <option> Artificial Intelligence and Data Science </option>
+                        <option> Artificial Intelligence and Machine Learning </option>
+                        <option> Information Technology </option>
+                        <option> Computer Technology </option>
+                        <option> Computer Science and Engineering </option>
+                        <option> Mechanical Engineering </option>
+                        </option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Designation</td>
+                <td><select name="Designation">
+                        <option selected disabled=true>Select Designation</option>
+                        <option> Head </option>
+                        <option> Associate Professor </option>
+                        <option> Assistant Professor Level-3</option>
+                        <option> Assistant Professor Level-2 </option>
+                        <option> Assistant Professor Level-1 </option>
+                        <option> Professor Intern</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
+            </tr>
+            {% if messages %}
+			<div class="alert alert-primary" role="alert">
+				{% for message in messages %}
+				{{ message }}
+				{% endfor %}
+			</div>
+			{% endif %}
+        </table>
+
+    -->
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<style>
+		.css-serial {
+            counter-reset: serial-number; 
+        }
+
+        .css-serial td:first-child:before {
+            counter-increment: serial-number;  
+            content: counter(serial-number);  
+        }
+	</style>
+	<script>
+    </script>
+</head>
+<body>
+	<div style="text-align: center;">
+        <img href="">
+        <b>Bannari Amman Institute of Technology<br>Department of {{ Department }}<br>Academic Year {{ year }}<br>360 Degree Feedback - Self Appraisal Score</b>
+		<br>
+    </div>
+	<br>
+	<div class="container-fluid">
+		<div>
+            <b>A. <a style="color: blue;">Teaching Process(Max Point: 20)Note: 10 Credit point for each semester</a></b>
+        </div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;">S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 15%;">Subject Code</th>
+					<th style="width: 25%;">Subject Name</th>
+					<th style="width: 10%;">No. of Scheduled Classes</th>
+					<th style="width: 10%;">No. of Actually Held Classes</th>
+					<th style="width: 7%;">Points Earned</th>
+					<th style="width: 20%;">Supporting Document Index No</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in testing %}
+					<tr style="text-align: center;">
+						<td></td>
+						<td>{{ id.Semester }}</td>
+						<td>{{ id.Subject_Code }}</td>
+						<td>{{ id.Subject_Name }}</td>
+						<td>{{ id.No_of_Schedule_Classes }}</td>
+						<td>{{ id.No_of_Actually_Held_Classes }}</td>
+						<td>{{ id.Cat_A_Points_Earned }}</td>
+						<td>{{ id.Supporting_Docs }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="5"></td>
+                    <td style="text-align: center;"><b>Total Points:</b>Total Points:</td>
+                    <td style="text-align: center;">{{scorea}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+	<br>
+	<div class="container-fluid">
+		<div>
+            <b style="color: blue;">B. Students' feedback(Max Point:20) Note: 10 Credit point for each sem. & min.70% students data</b>
+        </div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;" >S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 10%;">Subject Code</th>
+					<th style="width: 30%;">Subject Name</th>
+					<th style="width: 20%;">Average Student feedback on the scale of 20</th>
+					<th style="width: 15;">Points Earned</th>
+					<th style="width: 12%;">Supporting Document Index No.</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in testing %}
+					<tr style="text-align: center;">
+						<td></td>
+						<td>{{ id.Semester }}</td>
+						<td>{{ id.Subject_Code }}</td>
+						<td>{{ id.Subject_Name }}</td>
+						<td>{{ id.Average_Student_Feedback }}</td>
+						<td>{{ id.Cat_B_Points_Earned }}</td>
+						<td>{{ id.Supporting_Docs }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td style="text-align: center;">{{scoreb}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+	<div class="container-fluid">
+		<div>
+            <b style="color: blue;">C. Activities for Self-Development (Max credit 20)  Note: 10 Credit point for each semester</b>
+        </div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;" >S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 30%;">Activity </th>
+					<th style="width: 25%;">Credit Points</th>
+					<th style="width: 20%;">Criteria</th>
+					<th style="width: 12%;">Supporting Document Index No.</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in Development%}
+					<tr style="text-align: center;">
+						<td></td>
+						<td>{{ id.Semester }}</td>
+						<td>{{ id.Activity }}</td>
+						<td>{{ id.Credit_Point }}</td>
+						<td>{{ id.Criteria }}</td>
+						<td>{{ id.Supporting_Docs }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td style="text-align: center;">{{scorec}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+</body>
+</html>

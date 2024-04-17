@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdf</title>
+    <style>
+    table {
+        border: 8px outset;
+        border-radius: 10px;
+        border-spacing: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        border: 1px solid;
+    }
+        .css-serial {
+            counter-reset: serial-number; 
+        }
+
+        .css-serial td:first-child:before {
+            counter-increment: serial-number;  
+            content: counter(serial-number);  
+        }
+    </style>
+</head>
+<body style="align-items: center;">
+    <!--Heading of the Report-->
+    <div style="text-align: center;">
+        <img href="">
+        <b>Bannari Amman Institute of Technology<br>Academic Year {{academic_year}}<br>360 Degree Feedback - Self Appraisal Score</b>
+    </div>
+    <!--Category-A-->
+    <div>
+        <div>
+            <b>A. <a style="color: blue;">Teaching Process(Max Point: 20)Note: 10 Credit point for each semester</a></b>
+        </div>
+        <div >        
+            <table border="1" style="border-collapse: collapse;" class="css-serial">
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Semester</th>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>No. of Scheduled Classes</th>
+                <th>No. of actually held classes</th>
+                <th>Points Earned</th>
+                <th>Supporting Document Index No.</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for id in Faculty_Academics_Teaching_Process %}
+            <tr>
+                <td></td>
+                <td>{{id.Semester}}</td>
+                <td>{{id.Subject_Code}}</td>
+                <td>{{id.Subject_Name}}</td>
+                <td>{{id.No_of_Schedule_classes}}</td>
+                <td>{{id.No_of_Actually_Held_Classes}}</td>
+                <td>{{id.Cat_A_Points_Earned}}</td>
+                <td>{{id.Supporting_Docs}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table></div>
+
+    </div>
+    <br>
+    <!--Category-B-->
+    <div>
+        <div>
+            <b style="color: blue;">B. Students' feedback(Max Point:20) Note: 10 Credit point for each sem. & min.70% students data</b>
+        </div>
+        <table border="1" style="border-collapse: collapse;" class="css-serial">
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Semester</th>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Average Student feedback on the scale of 20</th>
+                <th>Points Earned</th>
+                <th>Supporting Document Index No.</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for id in Faculty_Academics_Students_Feedback %}
+            <tr>
+                <td></td>
+                <td>{{id.Semester}}</td>
+                <td>{{id.Subject_Code}}</td>
+                <td>{{id.Subject_Name}}</td>
+                <td>{{id.Average_Student_Feedback}}</td>
+                <td>{{id.Cat_B_Points_Earned}}</td>
+                <td>{{id.Supporting_Docs}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!--Category-C-->
+    <div>
+        <div>
+            <b style="color: blue;">C. Activities for Self-Development (Max credit 20)  Note: 10 Credit point for each semester</b>
+        </div>
+        <table border="1" style="border-collapse: collapse;" class="css-serial">
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Semester</th>
+                <th>Activity</th>
+                <th>Credit Points</th>
+                <th>Criteria</th>
+                <th>Supporting Document Index No.</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for id in Faculty_Development_Self_Development %}
+            <tr>
+                <td></td>
+                <td>{{id.Semester}}</td>
+                <td>{{id.Activity}}</td>
+                <td>{{id.Credit_Point}}</td>
+                <td>{{id.Criteria}}</td>
+                <td>{{id.Support_Document_No}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!--Category-D-->
+    <div>
+        <div>
+            <b style="color: blue;">D. Institute/Departmental Responsibility(Max Credit:10) Note: 5 Credit point for each semester</b>
+        </div>
+        <table border="1" style="border-collapse: collapse;" class="css-serial">
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Semester</th>
+                <th>Activity</th>
+                <th>Credit Points</th>
+                <th>Criteria</th>
+                <th>Supporting Document Index No.</th>
+            </tr>
+            </thead>
+            <tbody>
+                {%  for id in Faculty_Development_Institute_Development %}
+                <tr>
+                    <td></td>
+                    <td>{{id.Semester}}</td>
+                    <td>{{id.Activity}}</td>
+                    <td>{{id.Credit_Point}}</td>
+                    <td>{{id.Criteria}}</td>
+                    <td>{{id.Support_Document_No}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!--Category-E-->
+    <div>
+        <div>
+            <b style="color: blue;">E. ACR maintained at institute level(Max Credit:20)</b>
+        </div>
+        <div>
+            <p>Result (Max 10 Credit Point/Semester)</p>
+            <table border="1" style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Extraordinary</th>
+                        <th>Excellent</th>
+                        <th>Very Good</th>
+                        <th>Good</th>
+                        <th>Satisfactory</th>
+                        <th>Poor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>10</th>
+                        <th>9</th>
+                        <th>8</th>
+                        <th>7</th>
+                        <th>5</th>
+                        <th>0</th>
+                    </tr>
+                    <tr>
+                        <th>100-96%</th>
+                        <th>95-90%</th>
+                        <th>89-80%</th>
+                        <th>79-70%</th>
+                        <th>69-55%</th>
+                        <th>Below 55%</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p>Result Summary</p>
+            <table border="1" style="border-collapse: collapse;" class="css-serial">
+                <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Semester</th>
+                    <th>Subject Code</th>
+                    <th>Subject Name</th>
+                    <th>No. of Students Registered</th>
+                    <th>No. of Students Passed</th>
+                    <th>Result%</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--Odd Semester-->
+                {% for id in Faculty_Academics_ACR_Odd %}
+                <tr>
+                    <td></td>
+                    <td>{{id.Semester}}</td>
+                    <td>{{id.Subject_Code}}</td>
+                    <td>{{id.Subject_Name}}</td>
+                    <td>{{id.No_of_Students_Registered}}</td>
+                    <td>{{id.No_of_Students_Passed}}</td>
+                    <td>{{id.Result}}</td>
+                </tr>
+                {% forend %}
+                <!--Even Semester-->
+                {% for id in Faculty_Academics_ACR_Odd %}
+                <tr>
+                    <td></td>
+                    <td>{{id.Semester}}</td>
+                    <td>{{id.Subject_Code}}</td>
+                    <td>{{id.Subject_Name}}</td>
+                    <td>{{id.No_of_Students_Registered}}</td>
+                    <td>{{id.No_of_Students_Passed}}</td>
+                    <td>{{id.Result}}</td>
+                </tr>
+                {% forend %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Category-F-->
+    <div>
+        <div>
+            <b style="color: blue;">F. Contribution to Society (Max Credit:10)</b>
+        </div>
+        <table border="1" style="border-collapse: collapse;" class="css-serial">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Semester</th>
+                    <th>Activity</th>
+                    <th>Credit Points</th>
+                    <th>Criteria</th>
+                    <th>Supporting Document Index No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%  for id in Faculty_Development_Society_Contribution}
+                <tr>
+                    <td></td>
+                    <td>{{id.Semester}}</td>
+                    <td>{{id.Activity}}</td>
+                    <td>{{id.Credit_Point}}</td>
+                    <td>{{id.Criteria}}</td>
+                    <td>{{id.support_document_no}}</td>
+                </tr>
+                {% forend %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

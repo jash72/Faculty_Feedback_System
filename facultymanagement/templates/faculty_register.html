@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Faculty Details</title>
+</head>
+<style>
+    table {
+        border: 8px outset;
+        border-radius: 10px;
+        border-spacing: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        border: 1px solid;
+    }
+
+    .css-serial {
+        counter-reset: serial-number; 
+    }
+
+    .css-serial td:first-child:before {
+        counter-increment: serial-number;  
+        content: counter(serial-number);  
+    }
+</style>
+
+<body>
+    <h2 style="text-align:center"> Faculty Information </h2>
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <table align="center" style="margin: 0px auto;" class="css-serial">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone No</th>
+                <th>Qualification</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for faculty in faculties %}
+            <tr>
+                <td></td>
+                <td>{{faculty.Id}}</td>
+                <td>{{faculty.Name}}</td>
+                <td>{{faculty.Gender}}</td>
+                <td>{{faculty.Email_ID}}</td>
+                <td>{{faculty.Phone_No}}</td>
+                <td>{{faculty.Qualification}}</td>
+                <td>{{faculty.Department}}</td>
+                <td>{{faculty.Designation}}</td>
+                <td>
+                    <a href="{% url 'edit_faculty' faculty.id %}">Update</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_faculty' faculty.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+    <div class="alert alert-danger" role="alert">
+        Do you want to enter more Faculty?
+    </div>
+    <p>
+        <a href="{% url 'faculty_registration' %}"><-- Go To Home Page</a>
+    </p>
+</body>
+
+</html>
