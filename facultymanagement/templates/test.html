@@ -49,7 +49,7 @@
 				{% for id in testing %}
 					<tr style="text-align: center;">
 						<td></td>
-						<td>{{ id.Semester }}</td>
+						<td>{{ id.Semester_roman }}</td>
 						<td>{{ id.Subject_Code }}</td>
 						<td>{{ id.Subject_Name }}</td>
 						<td>{{ id.No_of_Schedule_Classes }}</td>
@@ -61,8 +61,7 @@
 			</tbody>
 			<tfoot>
                 <tr>
-                    <td colspan="5"></td>
-                    <td style="text-align: center;"><b>Total Points:</b>Total Points:</td>
+                    <td colspan="5" style="text-align: center;"><b>Total Points:</b></td>
                     <td style="text-align: center;">{{scorea}}</td>
                 </tr>
             </tfoot>
@@ -89,7 +88,7 @@
 				{% for id in testing %}
 					<tr style="text-align: center;">
 						<td></td>
-						<td>{{ id.Semester }}</td>
+						<td>{{ id.Semester_roman }}</td>
 						<td>{{ id.Subject_Code }}</td>
 						<td>{{ id.Subject_Name }}</td>
 						<td>{{ id.Average_Student_Feedback }}</td>
@@ -100,8 +99,7 @@
 			</tbody>
 			<tfoot>
                 <tr>
-                    <td colspan="4"></td>
-                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td colspan="4" style="text-align: center;"><b>Total Points:</b></td>
                     <td style="text-align: center;">{{scoreb}}</td>
                 </tr>
             </tfoot>
@@ -124,10 +122,10 @@
 				</tr>
 			</thead>
 			<tbody class="css-serial">
-				{% for id in Development%}
+				{% for id in Faculty_Development_Self_Development%}
 					<tr style="text-align: center;">
 						<td></td>
-						<td>{{ id.Semester }}</td>
+						<td>{{ id.Semester_Type }}</td>
 						<td>{{ id.Activity }}</td>
 						<td>{{ id.Credit_Point }}</td>
 						<td>{{ id.Criteria }}</td>
@@ -137,8 +135,7 @@
 			</tbody>
 			<tfoot>
                 <tr>
-                    <td colspan="3"></td>
-                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td colspan="3" style="text-align: center;"><b>Total Points:</b></td>
                     <td style="text-align: center;">{{scorec}}</td>
                 </tr>
             </tfoot>
@@ -161,10 +158,10 @@
 				</tr>
 			</thead>
 			<tbody class="css-serial">
-				{% for id in Development %}
+				{% for id in Faculty_Development_Institute_Development %}
 					<tr style="text-align: center;">
 						<td></td>
-						<td>{{ id.Semester }}</td>
+						<td>{{ id.Semester_Type }}</td>
 						<td>{{ id.Activity }}</td>
 						<td>{{ id.Credit_Point }}</td>
 						<td>{{ id.Criteria }}</td>
@@ -174,8 +171,133 @@
 			</tbody>
 			<tfoot>
                 <tr>
-                    <td colspan="3"></td>
-                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td colspan="3" style="text-align: center;"><b>Total Points:</b></td>
+                    <td style="text-align: center;">{{scored}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+	<!--CATEGORY - E -->
+	<div class="container-fluid">
+		<div>
+            <b style="color: blue;">E. ACR maintained at institute level(Max Credit:20)</b>
+        </div>
+		<div>
+			<p>Result (Max 10 Credit Point/Semester)</p>
+			<table border="1" style="border-collapse: collapse;">
+				<thead style="text-align: center;">
+					<tr>
+						<th>Extraordinary</th>
+						<th>Excellent</th>
+						<th>Very Good</th>
+						<th>Good</th>
+						<th>Satisfactory</th>
+						<th>Poor</th>
+					</tr>
+				</thead>
+				<tbody style="text-align: center;">
+					<tr>
+						<th>10</th>
+						<th>9</th>
+						<th>8</th>
+						<th>7</th>
+						<th>5</th>
+						<th>0</th>
+					</tr>
+					<tr>
+						<th>100-96%</th>
+						<th>95-90%</th>
+						<th>89-80%</th>
+						<th>79-70%</th>
+						<th>69-55%</th>
+						<th>Below 55%</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;" >S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 10%;">Subject Code</th>
+					<th style="width: 30%;">Subject Name</th>
+					<th style="width: 20%;">No. of Students Registered</th>
+					<th style="width: 15;">No. of Students Passed</th>
+					<th style="width: 12%;">Result%</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in Faculty_Academics_ACR_Odd %}
+					<tr style="text-align: center;" >
+						<td></td>
+						<td>{{ id.Semester_roman }}</td>
+						<td>{{ id.Subject_Code }}</td>
+						<td>{{ id.Subject_Name }}</td>
+						<td>{{ id.No_of_Students_Registered }}</td>
+						<td>{{ id.No_of_Students_Passed }}</td>
+						<td>{{ id.Result }}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+                    <td colspan="6" style="text-align: end;"><b>ODD Semester Average out of 10 Points:</b></td>
+                    <td style="text-align: center;">{{scoree_odd}}</td>
+                </tr>
+				{% for id in Faculty_Academics_ACR_Even %}
+					<tr style="text-align: center;" >
+						<td></td>
+						<td>{{ id.Semester_roman }}</td>
+						<td>{{ id.Subject_Code }}</td>
+						<td>{{ id.Subject_Name }}</td>
+						<td>{{ id.No_of_Students_Registered }}</td>
+						<td>{{ id.No_of_Students_Passed }}</td>
+						<td>{{ id.Result }}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+                    <td colspan="6" style="text-align: end;"><b>EVEN Semester Average out of 10 Points:</b></td>
+                    <td style="text-align: center;">{{scoree_odd}}</td>
+                </tr>
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="6" style="text-align: end;"><b>Total Points:</b></td>
+                    <td style="text-align: center;">{{scoree}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+	<!--CATEGORY - F -->
+	<div class="container-fluid">
+		<div>
+            <b style="color: blue;">F. Contribution to Society (Max Credit:10)</b>
+        </div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;" >S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 30%;">Activity </th>
+					<th style="width: 25%;">Credit Points</th>
+					<th style="width: 20%;">Criteria</th>
+					<th style="width: 12%;">Supporting Document Index No.</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in Faculty_Development_Society_Contribution %}
+					<tr style="text-align: center;">
+						<td></td>
+						<td>{{ id.Semester_Type }}</td>
+						<td>{{ id.Activity }}</td>
+						<td>{{ id.Credit_Point }}</td>
+						<td>{{ id.Criteria }}</td>
+						<td>{{ id.Supporting_Docs }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: center;"><b>Total Points:</b></td>
                     <td style="text-align: center;">{{scored}}</td>
                 </tr>
             </tfoot>
@@ -183,3 +305,5 @@
 	</div>
 </body>
 </html>
+
+
