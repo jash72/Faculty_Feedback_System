@@ -142,7 +142,7 @@ def faculty_development(request):
             Semester_Type = 'Odd'
         Activity = request.POST['Activity']
         Criteria = request.POST['Criteria']
-        data = Faculty_Development(Faculty_Id = Faculty_Id, Category=Category, Academic_Year=Academic_Year, Semester_roman = Semester_roman, Semester = Semester,Semester_Type = Semester_Type, Activity=Activity, Criteria=Criteria, Support_Document_No=Support_Document_No)
+        data = Faculty_Development(Faculty_Id = Faculty_Id, Category=Category, Academic_Year=Academic_Year, Semester_roman = Semester_roman, Semester = Semester,Semester_Type = Semester_Type, Activity=Activity, Criteria=Criteria)
         data.save()
         return redirect('home/')
     else:
