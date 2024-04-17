@@ -107,6 +107,7 @@
             </tfoot>
 		</table>
 	</div>
+	<!--CATEGORY - C -->
 	<div class="container-fluid">
 		<div>
             <b style="color: blue;">C. Activities for Self-Development (Max credit 20)  Note: 10 Credit point for each semester</b>
@@ -139,6 +140,43 @@
                     <td colspan="3"></td>
                     <td style="text-align: center;"><b>Total Points:</b></td>
                     <td style="text-align: center;">{{scorec}}</td>
+                </tr>
+            </tfoot>
+		</table>
+	</div>
+	<!--CATEGORY - D -->
+	<div class="container-fluid">
+		<div>
+            <b style="color: blue;">D. Institute/Departmental Responsibility(Max Credit:10) Note: 5 Credit point for each semester</b>
+        </div>
+		<table class="table table-bordered" style="border-width: 5px;">
+			<thead>
+				<tr style="text-align: center;">
+					<th style="width: 3%;" >S.No</th>
+					<th style="width: 10%;">Semester</th>
+					<th style="width: 30%;">Activity </th>
+					<th style="width: 25%;">Credit Points</th>
+					<th style="width: 20%;">Criteria</th>
+					<th style="width: 12%;">Supporting Document Index No.</th>
+				</tr>
+			</thead>
+			<tbody class="css-serial">
+				{% for id in Development %}
+					<tr style="text-align: center;">
+						<td></td>
+						<td>{{ id.Semester }}</td>
+						<td>{{ id.Activity }}</td>
+						<td>{{ id.Credit_Point }}</td>
+						<td>{{ id.Criteria }}</td>
+						<td>{{ id.Supporting_Docs }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td style="text-align: center;"><b>Total Points:</b></td>
+                    <td style="text-align: center;">{{scored}}</td>
                 </tr>
             </tfoot>
 		</table>

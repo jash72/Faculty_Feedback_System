@@ -5,11 +5,15 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .models import Faculty, Faculty_Academics, Faculty_Development
 
-def faculty_home(request, Username):
-    faculty = Faculty.objects.filter(Username = Username)
-    course = Faculty_Academics.objects.filter(Faculty_Id = faculty[0].Id)
-    development = Faculty_Development.objects.filter(Faculty_Id = faculty[0].Id)
-    return render(request, 'faculty_home.html',{'faculty':faculty, 'course':course, 'development' :development })
+def faculty_home(request):
+    return render(request, 'faculty_home.html')
+
+''' 
+faculty = Faculty.objects.filter(Username = Username)
+course = Faculty_Academics.objects.filter(Faculty_Id = faculty[0].Id)
+development = Faculty_Development.objects.filter(Faculty_Id = faculty[0].Id)
+return render(request, 'faculty_home.html',{'faculty':faculty, 'course':course, 'development' :development })
+'''
 
 def admin_home(request):
     return render(request, 'admin_home.html')
@@ -24,6 +28,8 @@ def login_page(request):
 
         if Username.lower() == 'admin' and Password == '12345678':
             return redirect('/admins/')
+        
+        users = authenticate(username=Username, password=Password)
         if not Faculty.objects.filter(Username=Username).exists():
             messages.error(request, 'Invalid Username')
             return redirect('/')
@@ -32,6 +38,7 @@ def login_page(request):
             messages.error(request, "Invalid Password")
             return redirect('/')
         else:
+            login(request, users)
             return redirect('/home/')
     return render(request, 'login.html')
 
@@ -48,6 +55,9 @@ def faculty_registration(request):
         Qualification = separator.join(my_list)
         Department = request.POST['Department']
         Designation = request.POST['Designation']
+        L = list(map(str, Name.split()))
+        Faculty_First_Name = ''.join(L[:-1])
+        Faculty_Last_Name = L[-1]
         Username = Id
         Password = 'F' + str(Id)
         user = Faculty.objects.filter(Username=Username)
@@ -58,8 +68,10 @@ def faculty_registration(request):
         if useremail.exists():
             messages.info(request, f"Faculty was already Registered with this mail {Email_ID}.")
             return redirect('/register/')
+        data2 = User(username = Username, password = Password, first_name = Faculty_First_Name, last_name = Faculty_Last_Name, email = Email_ID)
         data = Faculty(Id=Id, Name=Name, Gender=Gender, Email_ID=Email_ID, Phone_No=Phone_No, Qualification=Qualification, Department=Department, Designation=Designation, Username=Username, Password=Password)
         data.save()  
+        data2.save()
         messages.info(request, "Account created Successfully!")
         return redirect('/faculty_register/')
     else:
@@ -93,8 +105,10 @@ def edit_faculty(request,id):
 
 def delete_faculty(request,id):
     faculties = Faculty.objects.get(pk=id)
+    faculty = User.objects.filter(username = faculties.Username)
     if request.method == 'POST':
         faculties.delete()
+        faculty.delete()
         messages.success(request, 'Faculty deleted successfully.')
         return redirect("/faculty_register/")
     context = {
