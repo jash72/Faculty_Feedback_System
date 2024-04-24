@@ -147,9 +147,14 @@ def faculty_development(request):
         return redirect('home/')
     else:
         return render(request, 'development.html')
+    
 
-'''
-def update_course_assign1(request,id):
+def update_course2(request, Id):
+
+    pass
+
+
+def update_course(request,id):
     faculties = Faculty_Academics.objects.get(pk=id)
     if request.method == 'POST':
             print(request.POST)
@@ -157,7 +162,7 @@ def update_course_assign1(request,id):
             #passing values to specific variable for easy calculation
             No_of_Schedule_Classes = request.POST['No_of_Schedule_Classes']
             No_of_Actually_Held_Classes = request.POST['No_of_Actually_Held_Classes']
-            Average_Student_Feedback =  request.POST['Average_Student_Feedback'] 
+            Average_Student_Feedback =  request.POST['Average_Student_Feedback']  
             No_of_Students_Registered = request.POST['No_of_Students_Registered']
             No_of_Students_Passed = request.POST['No_of_Students_Passed']
 
@@ -172,20 +177,19 @@ def update_course_assign1(request,id):
             
             result = (No_of_Students_Passed / No_of_Students_Registered) * 100
 
-            if result >= 96.00 and result <= 100:
+            if round(result) >= 96 and round(result) <= 100:
                 temp = 10
-            elif result >= 90.00 and result <= 95.99:
+            elif round(result) >= 90 and round(result) <= 95:
                 temp = 9
-            elif result >= 80.00 and result <= 89.99:
+            elif round(result) >= 80 and round(result) <= 89:
                 temp = 8
-            elif result >= 70.00 and result <= 79.99:
+            elif round(result) >= 70 and round(result) <= 79:
                 temp = 7
-            elif result >= 55.00 and result <= 69.99:
+            elif round(result) >= 55 and round(result) <= 69:
                 temp = 5
             
                 
             #updating data using variables
-            result = (No_of_Students_Passed / No_of_Students_Registered) * 100
             faculties.No_of_Schedule_Classes = No_of_Schedule_Classes
             faculties.No_of_Actually_Held_Classes = No_of_Actually_Held_Classes
             faculties.Average_Student_Feedback = Average_Student_Feedback
@@ -205,12 +209,9 @@ def update_course_assign1(request,id):
         'faculties': faculties,
     }
 
-    return render(request,'edit.html',context)
+    return render(request,'courese_update.html',context)
  
-
-
-
-
+'''
 def report(request, id, year):
     year1 = year
     Faculty_Academics_Teaching_Process = Faculty_Academics.objects.filter(Id=id, Academic_Year = year).order_by("Semester")
@@ -221,7 +222,6 @@ def report(request, id, year):
     Faculty_Academics_ACR_Even  = Faculty_Academics.objects.filter(Id=id, Academic_Year = year, Semester_Type = 'Even').order_by("Semester")
     Faculty_Development_Society_Contribution = Faculty_Development.objects.filter(Id=id, Academic_Year = year, Category = 'Contribution to Society').order_by("Semester")
     return render(request,'report.html', {'academic_year':year1, 'Faculty_Academics_Teaching_Process':Faculty_Academics_Teaching_Process, 'Faculty_Academics_Students_Feedback':Faculty_Academics_Students_Feedback, 'Faculty_Development_Self_Development':Faculty_Development_Self_Development, 'Faculty_Development_Institute_Development':Faculty_Development_Institute_Development, 'Faculty_Academics_ACR_Odd':Faculty_Academics_ACR_Odd, 'Faculty_Academics_ACR_Even':Faculty_Academics_ACR_Even, 'Faculty_Development_Society_Contribution':Faculty_Development_Society_Contribution} )
-
 '''
 
 def points1(score):
@@ -268,8 +268,6 @@ def sample(request):
 
     for semester in range(len(Faculty_Academics_ACR_Even)):
         scoree_even += Faculty_Academics_ACR_Even[semester].Result_Points
-    
-    scoree = points1(scoree_odd) + points1(scoree_even)
      
     for j in range(len(Faculty_Development_Self_Development)):
         if Faculty_Development_Self_Development[j].Credit_Point >= 10:
@@ -291,7 +289,27 @@ def sample(request):
 
     #data = Every_Academic_Report(Faulty_Id = Id, Faculty_Name = user.Name, Academic_Year = Year, Teaching_Process = Teaching_Process, Students_Feedback = Students_Feedback, Departmental_Activities = Departmental_Activities,)
     scoree = points1(scoree_odd) + points1(scoree_even)
-    return render(request,'test.html',{'testing':testing, 'year':testing[0].Academic_Year, 'Department':user[0].Department,'scorea':points2(scorea), 'scoreb':points2(scoreb), 'Faculty_Development_Self_Development':Faculty_Development_Self_Development, 'scorec':points2(scorec),'Faculty_Development_Institute_Development':Faculty_Development_Institute_Development, 'scored':points1(scored),'Faculty_Academics_ACR_Odd':Faculty_Academics_ACR_Odd, 'scoree_odd':points1(scoree_odd),'Faculty_Academics_ACR_Even':Faculty_Academics_ACR_Even, 'scoree_even':points1(scoree_even),'scoree':points2(scoree),'Faculty_Development_Society_Contribution': Faculty_Development_Society_Contribution, 'scoref':points1(scoref)})
+
+    context = {
+        'testing':testing,
+        'year':testing[0].Academic_Year, 
+        'Department':user[0].Department,
+        'scorea':points2(scorea), 
+        'scoreb':points2(scoreb), 
+        'Faculty_Development_Self_Development':Faculty_Development_Self_Development, 
+        'scorec':points2(scorec),
+        'Faculty_Development_Institute_Development':Faculty_Development_Institute_Development, 
+        'scored':points1(scored),
+        'Faculty_Academics_ACR_Odd':Faculty_Academics_ACR_Odd, 
+        'scoree_odd':points1(scoree_odd),
+        'Faculty_Academics_ACR_Even':Faculty_Academics_ACR_Even, 
+        'scoree_even':points1(scoree_even),
+        'scoree':points2(scoree),
+        'Faculty_Development_Society_Contribution': Faculty_Development_Society_Contribution,
+        'scoref':points1(scoref)
+        }
+
+    return render(request,'test.html', context )
 
 
 '''
